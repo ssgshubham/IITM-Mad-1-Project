@@ -1,0 +1,37 @@
+{% extends "user.html" %}
+{% block title %}
+List All Categories and their entity
+{% endblock %}
+{% block content %}
+        <table border="1px">
+            <thead>
+                <td><strong>Category</strong></td>
+                <td><strong>Entity Name</strong></td>
+                <td><strong>Unit</strong></td>
+                <td><strong>Rate</strong></td>
+                <td><strong>In Cart</strong></td>
+                <td><strong>Cost</strong></td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["cname"] }}</td>
+                <td>{{ row["cename"] }}</td>
+                <td>{{ row["unit"] }}</td>
+                <td>{{ row["rate"] }}</td>
+                <td>{{ row["incart"] }}</td>
+                <td>{{ row["rate"] * row["incart"] }}</td>
+                <td>
+                    <a href="{{ url_for('explore') }}"><button>Review</button></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <br>
+        <strong>Total Cost: Rs {{ total_cost }}</strong>
+        <br>
+        <br>
+        <form action="{{url_for('checkout')}}" method="POST">
+            <input type="submit" value="Checkout" />
+        </form>
+{% endblock %}

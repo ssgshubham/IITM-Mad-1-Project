@@ -1,0 +1,72 @@
+{% extends "user.html" %}
+{% block title %}
+List All Categories and their entity
+{% endblock %}
+{% block content %}
+{{ msg }} 
+
+
+<h3>Explore: </h3>
+<form action="{{url_for('filter')}}" method="POST">
+
+<label>Filter Category:</label>
+<select name="cfilter">
+    <option value="all">All Categories</option>
+    {% for row in rows %}
+        <option value="{{ row['cname'] }}">{{ row['cname'] }}</option>
+    {% endfor %}
+</select>
+
+<label>Filter Price:</label>
+<select name="pfilter">
+    <option value="all">All Prices</option>
+    {% for row in rows %}
+        <option value="{{ row['rate'] }}">{{ row['rate'] }}</option>
+    {% endfor %}
+</select>
+
+<input type="submit" value="Submit"/>
+</form>
+
+<br>
+<br>
+        <table border="1px">
+            <thead>
+                <td><strong>Category</strong></td>
+                <td><strong>Entity Name</strong></td>
+                <td><strong>Unit</strong></td>
+                <td><strong>Rate/Unit</strong></td>
+                <td><strong>Quantity in store</strong></td>
+                <td><strong>In Cart</strong></td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["cname"] }}</td>
+                <td>{{ row["cename"] }}</td>
+                <td>{{ row["unit"] }}</td>
+                <td>{{ row["rate"] }}</td>
+                <td>{{ row["cquantity"] }}</td>
+                <td>{{ row["incart"] }}</td>
+                <td>
+                    <form action="{{url_for('add')}}" method="POST">
+                    <input type="hidden" name="id" value="{{ row['rowid'] }}">
+                    <input type="hidden" name="cquantity" value="{{ row['cquantity'] }}">
+                    <input type="hidden" name="orignalquantity" value="{{ row['orignalquantity']}}">
+                    <input type="hidden" name="incart" value="{{ row['incart'] }}">
+                    <input type="submit" value="Add">
+                    </form> 
+                </td>
+                <td>
+                    <form action="{{url_for('deleteitem')}}" method="POST">
+                    <input type="hidden" name="id" value="{{ row['rowid'] }}">
+                    <input type="hidden" name="cquantity" value="{{ row['cquantity'] }}">
+                    <input type="hidden" name="orignalquantity" value="{{ row['orignalquantity']}}">
+                    <input type="hidden" name="incart" value="{{ row['incart'] }}">
+                    <input type="submit" value="Delete">
+                    </form> 
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

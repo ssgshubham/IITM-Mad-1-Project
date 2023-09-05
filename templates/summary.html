@@ -1,0 +1,25 @@
+{% extends "admin.html" %}
+{% block title %}
+{% endblock %}
+{% block content %}
+<h2>List of all categories and there entity</h2>
+<table border="1px">
+            <thead>
+                <td><strong>Category</strong></td>
+                <td><strong>Entity Name</strong></td>
+                <td><strong>Unit</strong></td>
+                <td><strong>Rate/Unit</strong></td>
+                <td><strong>Quantity</strong></td>
+            </thead>
+
+            {% for row in rows %}
+            <tr>
+                <td>{{ row["cname"] }}</td>
+                <td>{{ row["cename"] }}</td>
+                <td>{{ row["unit"] }}</td>
+                <td>{{ row["rate"] }}</td>
+                <td>{{ row["cquantity"] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

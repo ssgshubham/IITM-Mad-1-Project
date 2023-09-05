@@ -1,0 +1,25 @@
+{% extends "admin.html" %}
+{% block title %}
+Create Category
+{% endblock %}
+{% block content %}
+<form action="{{ url_for('addcategory') }}" method="POST">
+    <h3>Please add new category:</h3>
+    Category Name<br>
+    <input type="text" name="cname" /><br>
+
+    Entity Name<br>
+    <input type="text" name="cename" /><br>
+
+    Mention Unit(eg: Rs/Kg, Rs/Ltr,  Rs/g, etc) <br>
+    <input type="text" name="unit" /><br>
+
+    Rate/Unit(eg: 4, 16, etc)<br>
+    <input type="text" name="rate" /><br>
+
+    Quantity<br>
+    <input type="text" name="cquantity" /><br>
+    
+    <input type="submit" value="Submit" /><br>
+</form>
+{% endblock %}

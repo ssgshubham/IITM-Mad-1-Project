@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Admin Dashboard</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    </head>
+
+    <body>
+        <div class="navbar">
+            <a href="{{ url_for('admin') }}" class="navbar-brand">Admin Dashboard</a>
+            <a href="{{ url_for('admincategories') }}" class="navbar-item">Category Management</a>
+            <a href="{{ url_for('newcategory') }}" class="navbar-item">Product Management</a>
+            <a href="{{ url_for('summary') }}" class="navbar-item">Summary</a>
+            <a href="{{ url_for('logout') }}" class="navbar-item">Logout</a>        
+        </div>
+
+        <div class="body-content">
+            {% block content %}
+            {{ msg }}  
+            <h1>Hello Admin</h1>
+            {% endblock %}
+            <hr/>
+            <footer>
+               
+            </footer>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{% extends "admin.html" %}
+{% block title %}
+Edit Category
+{% endblock %}
+{% block content %}
+        <h1>Edit Category Record</h1>
+        {% for row in rows %}
+        <form action="{{ url_for('editrec') }}" method="POST">
+            <input type="hidden" name="rowid" value="{{ row['rowid'] }}">
+            Category Name<br>
+            <input type="text" name="cname" value="{{ row['cname'] }}"/><br>
+
+            Entity Name<br>
+            <input type="text" name="cename" value="{{row['cename']}}"/><br>
+
+            Unit<br>
+            <input type="text" name="unit" value="{{row['unit']}}"/><br>
+
+            Rate/Unit<br>
+            <input type="text" name="rate" value="{{row['rate']}}"/><br>
+
+            Quantity<br>
+            <input type="text" name="cquantity" value="{{row['cquantity']}}"/><br>    
+        
+
+            <input type="submit" value="Submit" /><br>
+        </form>
+        {% endfor %}
+{% endblock %}
